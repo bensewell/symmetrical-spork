@@ -19,10 +19,19 @@ jobs:
           run: npm ci
         - name: Install Playwright Browsers
           run: npx playwright install --with-deps
-        - name: Serve the app
-          run: |
-            npm install --global serve
-            npx serve &
+
+        - name: Set up Python 3.11
+          uses: actions/setup-python@v5
+          with:
+            python-version: 3.11
+
+        - name: Install Pelican
+          run: pip install pelican[markdown]
+
+        - name: Serve the site
+          working-directory: pelican
+          run: pelican -r -l
+
         - name: Run Playwright tests
           run: npx playwright test
         - uses: actions/upload-artifact@v4
