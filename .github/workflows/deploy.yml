@@ -27,7 +27,7 @@ jobs:
           run: invoke build
 
         - name: Upload build artifacts
-          uses: actions/upload-artifact@v2
+          uses: actions/upload-artifact@v4
           with:
             name: pelican-site
             path: pelican/output
@@ -47,7 +47,7 @@ jobs:
         - name: Install Playwright Browsers
           run: npx playwright install --with-deps
         - name: Get build artefact from previous job
-          uses: actions/download-artifact@v2
+          uses: actions/download-artifact@v4
           with:
             name: pelican-site
             path: pelican-site        
@@ -70,7 +70,7 @@ jobs:
 
         steps:
         - name: Download build artefact from previous job
-          uses: actions/download-artifact@v2
+          uses: actions/download-artifact@v4
           with:
             name: pelican-site
 
